@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Create Your Profile{% endblock %} 
+{%block content %}
+{% if user.is_authenticated %}
+<div class="card">
+<h1>Create New Profile</h1>
+<div class="form-group">
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %} {{ form.as_p }}
+    <button class="btn btn-primary">Create Profile</button>
+  </form>
+</div>
+</div>
+
+{% else %}
+ NT Nerd, you're not allowed here 
+ {% endif %} 
+ {% endblock %}

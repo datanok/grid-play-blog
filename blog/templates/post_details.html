@@ -1,0 +1,93 @@
+{% extends 'base.html' %} {% load static %} {% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+
+	<main class="col-sm-12 col-md-8 mx-auto">
+	<div class="col-sm-12 card">
+		<h2 class="blog-post-title">{{ post.title }}</h2>
+		<p class="blog-post-meta text-grey"> {{ post.post_date }} by <a href="#">{{ post.author.first_name}} {{ post.author.last_name}} </a> {% if user.is_authenticated %} {% if user.id == post.author.id %} |<a href="{% url 'edit-posts' post.pk %}">Edit</a> |<a href="{% url 'delete-post' post.pk %}">Delete</a> {% endif %} {% endif %} </p>
+		<p class="font-italic" style="color:rgba(117, 117, 117, 1);">{{ post.snippet }}</p>
+		<article class="blog-post">
+		{% if post.header_img %}
+
+			<div class="col-sm-12 text-center"> <img src="{{ post.header_img.url }}" class="img-fluid col-sm-12 col-md-6"> </div>
+		 {% endif %}
+			<p>{{ post.body|safe }}</p> {% comment %} safe to escape html {% endcomment %} <a href="{% url 'home' %}" class="btn btn-primary">Back</a> </article>
+	</div>
+	<section class="author-box container card">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-6 col-xs-offset-3 col-sm-3 col-sm-offset-0"> {% if post.author.userprofile.profile_pic %} <img class="img-fluid img-circle center-block" src="{{ post.author.userprofile.profile_pic.url}}"> {% else %} <img class="img-fluid rounded-circle" src="{% static 'images/default.jpg' %}" height="150" width="150"> {% endif %} </div>
+					<!-- col-sm-3 -->
+					<div class="col-xs-12 col-sm-9">
+						<hr class="visible-xs-block">
+						<div class="author-box-intro small text-muted">About the Author</div>
+						<!-- .author-box-intro -->
+						<div class="author-inline-block">
+							<h4 class="author-box-title">
+				 <span ><a class="author-name" >{{ post.author.first_name}} {{ post.author.last_name}}</a></span>
+				 {% if user.userprofile.id %}<a href='{% url 'show_profile' post.author.userprofile.id %}' class=" btn btn-primary btn-sm show-profile">Show Profile</a>{% endif %}
+				 
+				 <small class="author-social-links small"><ul class="social-links list-inline">
+                        {% if post.author.userprofile.fb_url %}
+                         <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips fb" href="{{ post.author.userprofile.fb_url }}" ><i class="fab fa-facebook-square"></i></a></li>
+                        {% endif %}
+            
+                        {% if post.author.userprofile.twitter_url %}
+                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips twitter" href="post.author.userprofile.twitter_url" data-original-title="Twitter" ><i class="fab fa-twitter-square"></i></a></li>
+                        {% endif %}
+                        {% if post.author.userprofile.instagram_url %}
+                          <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips insta" href="post.author.userprofile.instagram_url" data-original-title="Instagram"><i class="fab fa-instagram-square"></i></i></i></a></li>
+                        {% endif %}
+                         </ul>	  </small><!-- author-social-links -->
+				</h4> </div>
+						<div class="author-box-content">{{ post.author.userprofile.bio }} </div>
+						<!-- author-box-content -->
+					</div>
+					<!-- col -->
+				</div>
+				<!-- row -->
+			</div>
+			<!-- panel-body -->
+		</div>
+		<!-- panel -->
+	</section>
+	<!-- author-box -end-->{% comment %} comment Section {% endcomment %}
+ 
+	<section class="mb-2">
+  	<div class="row d-flex justify-content-center">
+			<div class="col-md-12 ">
+				<div class="card text-dark">
+					<h4 class="mb-0 mb-4 pb-2">Comments</h4>
+           {% if not post.comments.all %} No comments yet <a href="{% url 'add_comment' post.pk %}" class="btn btn-primary btn-sm">Add comment</a> {% else %}
+          {% for comment in post.comments.all %}
+
+					<div class="card-body p-4">
+						<div class="d-flex flex-start">
+						 <img class="rounded-circle shadow-1-strong me-3" src="{% static 'images/default.jpg' %}" alt="avatar" width="60" height="60" />
+						 <div>
+						 	<h6 class="fw-bold mb-1">{{ comment.name }}</h6>
+							<div class="d-flex align-items-center mb-3">
+								<p class="mb-0">{{ comment.date_added }}</p>
+							</div>
+							<p class="mb-0">{{ comment.body }}</p>
+              				</div>
+							
+						
+						</div>
+					</div>
+					<hr class="my-0" /> {% endfor %} 
+          <br>
+          <a href="{% url 'add_comment' post.pk %}" class="btn btn-primary">Add comment</a>
+          </div>
+			</div>
+</div>
+
+  {% endif %}</section></main>
+ {% comment %} </br>
+	<hr>
+	<form action="{% url 'like_post' post.pk %}" method="POST"> {% csrf_token %}
+		<button type="submit" , name="post_id" , value="{{ post.id }}" , class="btn btn-block btn-primary"><i class="fa fa-thumbs-up">Like</button> - {{ total_likes}} Likes
+</form>
+ {% endcomment %}
+{% endblock %}

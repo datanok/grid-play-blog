@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block title %}Login{% endblock %} 
+{% block content %}
+
+<div class="card">
+
+<div class="form-signin">
+<form method="POST">
+  {% csrf_token %} 
+  <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div class="form-floating">
+      <input type="text" class="form-control"placeholder="Enter Email" name='username'>
+      <label for="floatingInput">Username</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control"  placeholder="Password" name='password'>
+      <label for="floatingPassword">Password</label>
+    </div>
+
+  
+    <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Sign in</button>
+    <label class="form-check-label">Not a Member? Register <a href="{% url 'register' %}">Now</a></label>
+
+</form>
+</div>
+</div>
+{% endblock %}

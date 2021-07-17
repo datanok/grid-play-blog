@@ -1,0 +1,245 @@
+@import url('https://rsms.me/inter/inter.css');
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color:  #DDDDDD;
+    color: #2E3532;
+    font-family: 'Inter var', sans-serif;
+}
+.card{
+    padding: 1em 2em;
+    margin-top: 1em;
+    
+}
+.navbar{
+    margin-top: 2em;
+    border-radius: 23px;
+}
+.blog-post-meta {
+    margin-bottom: 1.25rem;
+    color: #727272;
+}
+.blog-post p img{
+  width: 100% !important;
+  height: auto !important;
+}
+.blog-post-meta a{
+  text-decoration: none;
+}
+.card-box {
+    padding: 20px;
+    border-radius: 3px;
+    
+    background-color: #fff;
+    margin-top: 1em;
+}
+
+.social-links li a {
+    border-radius: 50%;
+    color: rgba(121, 121, 121, .8);
+    display: inline-block;
+    height: 30px;
+    line-height: 27px;
+    border: 2px solid rgba(121, 121, 121, .5);
+    text-align: center;
+    width: 30px
+}
+
+.social-links li .fb:hover {
+    color: #4867AA;
+    border: 2px solid #000;
+}
+.social-links li a.insta:hover {
+    color: #BE4BDB;
+    border: 2px solid #000;
+}
+.social-links li .twitter:hover {
+    color: #5DA9DD;
+    border: 2px solid #000;
+}
+
+
+.btn-rounded {
+    border-radius: 2em;
+}
+.text-muted {
+    color: #98a6ad!important;
+}
+h4 {
+    line-height: 22px;
+    font-size: 18px;
+}
+@media (max-width: 480px) {
+    .card{
+        padding: none;
+        margin-top: 1em;
+        
+    }
+}
+
+.author-box-intro {
+	margin-top: 15px;
+}
+a.author-social-link.small {
+    margin-left: 5px;
+}
+.author-name{
+  text-decoration: none;
+}
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px){
+.center-block {
+	margin: 0 auto;
+}
+.author-box {
+	text-align: center;
+}
+.author-social-links {
+	text-align: center;
+	display: block;
+	margin-top: 10.5px;
+
+}
+
+}
+
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
+.blog-footer {
+    margin-top: auto;
+    
+    width: 100%;
+
+    color: #999;
+    text-align: center;
+    background-color: #212529;
+    border-top: .05rem solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 27px;
+    
+  }
+  .blog-footer a{
+    text-decoration: none;
+    color: #F05454;
+  }
+ 
+  .band {
+    width: 90%;
+    max-width: 1240px;
+    margin: 2em auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-gap: 20px;
+
+  }
+  @media (min-width: 30em) {
+  
+    
+  }
+  @media (min-width: 60em) {
+    .band {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .post {
+    background: white;
+    text-decoration: none;
+    color: #444;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    position: relative;
+    top: 0;
+    transition: all 0.1s ease-in;
+  }
+  .post:hover {
+    top: -2px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+  }
+  .post article {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .post h1 {
+    font-size: 20px;
+    margin: 0;
+    color: #333;
+    text-decoration: none;
+  }
+  .post h1 a{
+    color: #333;
+    text-decoration: none;
+  }
+  .post h1 a:hover{
+    color: #F05454;
+    
+  }
+  .post p {
+    flex: 1;
+    line-height: 1.4;
+  }
+  .post span {
+    font-size: 12px;
+    font-weight: bold;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 2em 0 0 0;
+  }
+  .post .thumb {
+    padding-bottom: 60%;
+    background-size: cover;
+    background-position: center center;
+  }
+  .post .post-date{
+    display: flex;
+    justify-content: space-between;
+    padding: 0%;
+  }
+  
+
+  .navbar-dark .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link {
+  font-weight: bold;
+}
+.page-link{
+  background-color: #212529;
+  color: #fff;
+  border-radius: 8%;
+}
+.page-link:hover{
+  background-color: #121212;
+  color: #fff;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #F05454;
+  border-color: #dc3545;
+}
+.card-img-overlay{
+  backdrop-filter: brightness(0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.logo{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2%;
+
+}
+.logo-text{
+  align-self: center;
+  letter-spacing: 4px;
+}

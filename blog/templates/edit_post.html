@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Edit Blog {% endblock %}
+{% block content %} 
+{% if user.is_authenticated %}
+  {% if user.id == post.author.id %}
+  <div class="card">
+  
+      <h1>Edit Blog</h1>
+      <div class="container">
+      <div class="form-group">
+        <form method="POST">
+          {% csrf_token %} {{ form.media }}{{ form.as_p }}
+          <button class="btn btn-primary">Update</button>
+        </form>
+      </div>
+      </div>
+      </div>
+      {% else %}
+      NT Nerd, you're not allowed here
+      {% endif %}
+{% else %}
+ NT Nerd, you're not allowed here
+{% endif %} 
+{% endblock %}

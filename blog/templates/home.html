@@ -1,0 +1,53 @@
+{% extends 'base.html' %}{% block title %}Grid Play | Home{% endblock %}{% load static %}
+{% block content %}
+
+<div class="card bg-dark text-white" style="padding:0px;">
+  <img class="card-img" src="{% static 'images/hero.jpg' %}" alt="Card image">
+  <div class="card-img-overlay text-center">
+  <div class="logo">
+  <img src="{% static 'images/logo.png' %}" alt="" width="80px" class="img-fluid"> <h1 class="logo-text">Grid<span style="color:#F05454">Play</span></h1>
+  </div>
+    <h5 class="card-text d-none d-sm-none d-md-block">We bring the latest video game news, reviews of the most exciting releases, and interviews with the industry’s biggest names. We cover everything from PlayStation and Xbox blockbusters, to quirky Nintendo games, to the cool indie gems on PC and Android that you might otherwise miss.
+</h5>
+  </div>
+</div>
+<div class="band">
+{% if object_list %}
+          {% for post in object_list %}
+            <div class="item">
+              <div class="post">
+              {% if post.post_thumbnail %}
+                <div class="thumb" style="background-image: url({{ post.post_thumbnail.url }});"></div>
+              {% else %}
+              <div class="thumb" style="background-image: url({% static 'images/default_thumbnail.jpg' %});"></div>
+              {% endif %}
+                <article>
+                  <h1><a href="{% url 'post-details' post.pk %}">{{ post.title }}</a></h1>
+                  <p>{{ post.snippet }}</p>
+                  <div class='post-date'><span>{{ post.author.first_name }} {{ post.author.last_name }}</span><span >{{ post.post_date}}</span></div>
+                </article>
+              </div>
+            </div>
+            {% endfor %}
+            {% if is_paginated %}
+            <nav aria-label="Page navigation conatiner"></nav>
+            <ul class="pagination justify-content-center">
+              {% if page_obj.has_previous %}
+              <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+              {% endif %}
+              {% if page_obj.has_next %}
+              <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+              {% endif %}
+            </ul>
+            </nav>
+          </div>
+          {% endif %}
+
+   {% else %}
+   No Posts Yet
+  {% endif %}
+ 
+</div>
+
+{% endblock %}

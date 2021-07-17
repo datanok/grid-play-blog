@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'images/logo.png' %}" />
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+	<title>{% block title %}{% endblock %}</title>
+</head>
+
+<body >
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container-fluid"> <a class="navbar-brand" href="{% url 'home' %}">Grid <span style="color:#F05454">Play</span></a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+				<div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul class="navbar-nav">
+						<li class="nav-item"> <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" aria-current="page" href="{% url 'home' %}">Home</a>
+              </li>
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+              <a class="nav-link {% if request.resolver_match.url_name == 'create-posts' %}active{% endif %}" href="{% url 'create-posts' %}">Create Blog</a> </li>
+			  {% else %}
+			  <li class="nav-item"> <a class="nav-link {% if request.resolver_match.url_name == 'register' %}active{% endif %}" href="{% url 'register' %}">Register</a> </li>
+			  <li class="nav-item"> <a class="nav-link {% if request.resolver_match.url_name == 'login' %}active{% endif %}" href="{% url 'login' %}">Login</a> </li> {% endif %} </ul> {% if user.is_authenticated %}
+			   <ul class="navbar-nav ms-auto">
+						<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Settings
+                </a>
+							<ul class="dropdown-menu bg-dark dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
+								<li> <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Account Settings</a></li> {% if user.userprofile.id %}
+								<li><a class="dropdown-item" href="{% url 'edit_userprofile' user.userprofile.id %}">Edit Profile</a></li>
+								<li><a class="dropdown-item" href="{% url 'show_profile' user.userprofile.id %}">Show Profile</a></li> {% else %}
+								<li><a class="dropdown-item" href="{% url 'create_user_profile' %}">Create Profile</a></li> {% endif %} </ul>
+						</li>
+					</ul> {% endif %}
+          </div>
+			</div>
+		</nav>
+		<div class="container ">{% block content %} {% endblock %}</div>
+     
+	</div>
+     <footer class="blog-footer">
+	
+
+      <p>Blog Made With Django For Internship task</p>
+      <p>
+        <a href="#">Tanmay Patil</a>
+      </p>	
+    </footer>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+
+</html>

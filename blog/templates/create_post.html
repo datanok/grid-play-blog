@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Create New blog{% endblock %} 
+{%block content %} {% if user.is_authenticated %}
+<div class="card">
+<h1>Create Blog</h1>
+<div class="form-group">
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %} {{ form.media }}{{ form.as_p }}
+    <button class="btn btn-primary">Publish</button>
+  </form>
+</div>
+</div>
+<script>
+  var name = "{{ user.id }}";
+  document.getElementById("author").value = name;
+</script>
+{% else %}
+ NT Nerd, you're not allowed here 
+ {% endif %} 
+ {% endblock %}
