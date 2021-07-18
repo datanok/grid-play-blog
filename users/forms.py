@@ -104,16 +104,16 @@ class ProfilePageForm(forms.ModelForm):
         fields = ("bio", "profile_pic", "fb_url", "twitter_url", "instagram_url")
         widgets = {
             "bio": forms.Textarea(
-                attrs={"class": "form-control", "placeholder": "Enter Blog Title"}
+                attrs={"class": "form-control", "placeholder": "Enter Bio"}
             ),
             "fb_url": forms.TextInput(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "Enter AUthor",
+                    "placeholder": "Enter facebook url",
                 }
             ),
             "twitter_url": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "Enter Blog Content"}
+                attrs={"class": "form-control", "placeholder": "Enter twitter url"}
             ),
             "instagram_url": forms.TextInput(
                 attrs={
